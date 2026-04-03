@@ -1,0 +1,32 @@
+carrera,grupo,semestre,materia,profesor,tipo_espacio,aula,dia,hora_inicio,hora_fin,turno,edificio,piso,observaciones
+ING-SIS,ING-SIS-1A,1,Programación I,Dr. Carlos Mendoza,AULA,Aula 101,LUNES,08:00,10:00,DIURNO,Edificio A,1,Primera clase con introducción
+ING-SIS,ING-SIS-1A,1,Programación I,Dr. Carlos Mendoza,AULA,Aula 101,MIERCOLES,08:00,10:00,DIURNO,Edificio A,1,
+ING-SIS,ING-SIS-1A,1,Programación I,Dr. Carlos Mendoza,AULA,Aula 101,VIERNES,08:00,10:00,DIURNO,Edificio A,1,
+ING-SIS,ING-SIS-1B,1,Programación I,Msc. Laura Sánchez,AULA,Aula 102,MARTES,10:00,12:00,DIURNO,Edificio A,1,Clase de tarde
+ING-SIS,ING-SIS-1B,1,Programación I,Msc. Laura Sánchez,AULA,Aula 102,JUEVES,10:00,12:00,DIURNO,Edificio A,1,
+ING-SIS,ING-SIS-1A,1,Matemáticas Discretas,Ing. José García,AULA,Aula 103,LUNES,10:00,12:00,DIURNO,Edificio A,1,
+ING-SIS,ING-SIS-1A,1,Matemáticas Discretas,Ing. José García,AULA,Aula 103,MIERCOLES,10:00,12:00,DIURNO,Edificio A,1,
+ING-SIS,ING-SIS-1A,1,Matemáticas Discretas,Ing. José García,AULA,Aula 103,VIERNES,10:00,12:00,DIURNO,Edificio A,1,
+ING-SIS,ING-SIS-2A,2,Estructuras de Datos,Dr. Carlos Mendoza,LABORATORIO,Laboratorio de Informática,LUNES,14:00,16:00,DIURNO,Edificio B,1,Requiere equipo
+ING-SIS,ING-SIS-2A,2,Estructuras de Datos,Dr. Carlos Mendoza,LABORATORIO,Laboratorio de Informática,MIERCOLES,14:00,16:00,DIURNO,Edificio B,1,
+ING-SIS,ING-SIS-2A,2,Estructuras de Datos,Dr. Carlos Mendoza,LABORATORIO,Laboratorio de Informática,VIERNES,14:00,16:00,DIURNO,Edificio B,1,
+ING-SIS,ING-SIS-3A,3,Bases de Datos,Msc. Laura Sánchez,LABORATORIO,Laboratorio de Redes,MARTES,14:00,16:00,DIURNO,Edificio B,2,Lab especial
+ING-SIS,ING-SIS-3A,3,Bases de Datos,Msc. Laura Sánchez,LABORATORIO,Laboratorio de Redes,JUEVES,14:00,16:00,DIURNO,Edificio B,2,
+ING-SIS,ING-SIS-4A,4,Programación Web,Dr. Carlos Mendoza,AULA,Aula 201,MARTES,08:00,10:00,DIURNO,Edificio A,2,
+ING-SIS,ING-SIS-4A,4,Programación Web,Dr. Carlos Mendoza,AULA,Aula 201,JUEVES,08:00,10:00,DIURNO,Edificio A,2,
+ADM-EMP,ADM-EMP-1A,1,Administración General,Dra. María López,AULA,Aula 103,LUNES,09:00,11:00,DIURNO,Edificio A,1,Introducción a la carrera
+ADM-EMP,ADM-EMP-1A,1,Administración General,Dra. María López,AULA,Aula 103,MIERCOLES,09:00,11:00,DIURNO,Edificio A,1,
+ADM-EMP,ADM-EMP-1A,1,Contabilidad Básica,Lic. Ana Martínez,AULA,Aula 104,MARTES,09:00,11:00,DIURNO,Edificio A,1,
+ADM-EMP,ADM-EMP-1A,1,Contabilidad Básica,Lic. Ana Martínez,AULA,Aula 104,JUEVES,09:00,11:00,DIURNO,Edificio A,1,
+ADM-EMP,ADM-EMP-2A,2,Gestión Empresarial,Dra. María López,AULA,Aula 105,LUNES,14:00,16:00,DIURNO,Edificio A,1,
+ADM-EMP,ADM-EMP-2A,2,Gestión Empresarial,Dra. María López,AULA,Aula 105,MIERCOLES,14:00,16:00,DIURNO,Edificio A,1,
+CONT,CONT-1A,1,Contabilidad Financiera,Lic. Ana Martínez,AULA,Aula 201,MARTES,14:00,16:00,DIURNO,Edificio A,2,Base de contabilidad
+CONT,CONT-1A,1,Contabilidad Financiera,Lic. Ana Martínez,AULA,Aula 201,JUEVES,14:00,16:00,DIURNO,Edificio A,2,
+CONT,CONT-1A,1,Auditoría,Lic. Ana Martínez,AULA,Aula 202,LUNES,15:00,17:00,DIURNO,Edificio A,2,
+CONT,CONT-2A,2,Impuestos,Lic. Ana Martínez,AULA,Aula 203,MIERCOLES,09:00,11:00,DIURNO,Edificio A,2,
+DER,DER-1A,1,Derecho Constitucional,Dr. Roberto Fernández,AUDITORIO,Auditorio Principal,MARTES,10:00,12:00,DIURNO,Edificio C,1,
+DER,DER-1A,1,Derecho Constitucional,Dr. Roberto Fernández,AUDITORIO,Auditorio Principal,VIERNES,10:00,12:00,DIURNO,Edificio C,1,
+DER,DER-1A,1,Teoría General del Derecho,Dr. Roberto Fernández,AULA,Aula 301,LUNES,10:00,12:00,DIURNO,Edificio C,3,
+DER,DER-1A,1,Teoría General del Derecho,Dr. Roberto Fernández,AULA,Aula 301,MIERCOLES,10:00,12:00,DIURNO,Edificio C,3,
+DER,DER-2A,2,Derecho Civil,Dr. Roberto Fernández,AULA,Aula 302,MARTES,14:00,16:00,DIURNO,Edificio C,3,
+DER,DER-2A,2,Derecho Civil,Dr. Roberto Fernández,AULA,Aula 302,JUEVES,14:00,16:00,DIURNO,Edificio C,3,

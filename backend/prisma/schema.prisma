@@ -1,0 +1,215 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Tabla de carreras
+model Carrera {
+  id        String   @id @default(cuid())
+  nombre    String   @unique
+  codigo    String   @unique
+  descripcion String?
+  semestres Int      @default(8)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relaciones
+  grupos    Grupo[]
+  profesores ProfesorCarrera[]
+
+  @@map("carreras")
+}
+
+// Tabla de profesores
+model Profesor {
+  id        String   @id @default(cuid())
+  nombre    String
+  email     String   @unique
+  cedula    String   @unique
+  telefono  String?
+  departamento String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relaciones
+  materias  ProfesorMateria[]
+  horarios  Horario[]
+  carreras  ProfesorCarrera[]
+
+  @@map("profesores")
+}
+
+// Tabla de materias/asignaturas
+model Materia {
+  id        String   @id @default(cuid())
+  nombre    String
+  codigo    String   @unique
+  creditos  Int
+  semestre  Int
+  descripcion String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relaciones
+  profesores ProfesorMateria[]
+  horarios  Horario[]
+  grupos   GrupoMateria[]
+
+  @@map("materias")
+}
+
+// Tabla de grupos
+model Grupo {
+  id        String   @id @default(cuid())
+  codigo    String
+  numero    Int
+  semestre  Int
+  turno     String   @default("DIURNO") // DIURNO, NOCTURNO, ESPECIAL
+  carreraId String
+  capacidad Int      @default(40)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relaciones
+  carrera   Carrera  @relation(fields: [carreraId], references: [id], onDelete: Cascade)
+  horarios  Horario[]
+  materias  GrupoMateria[]
+
+  @@unique([carreraId, numero, semestre, turno])
+  @@map("grupos")
+}
+
+// Tabla de aulas y laboratorios
+model Espacio {
+  id        String   @id @default(cuid())
+  nombre    String   @unique
+  codigo    String   @unique
+  tipo      String   // AULA, LABORATORIO, AUDITORIO
+  edificio  String
+  piso      Int
+  capacidad Int
+  recursos  String?  // JSON: {"computadoras": 30, "proyector": true}
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relaciones
+  horarios  Horario[]
+
+  @@index([tipo])
+  @@map("espacios")
+}
+
+// Tabla de periodos académicos
+model Periodo {
+  id        String   @id @default(cuid())
+  nombre    String   @unique
+  fechaInicio DateTime
+  fechaFin  DateTime
+  estado    String   @default("ACTIVO") // ACTIVO, INACTIVO, FINALIZADO
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relaciones
+  horarios  Horario[]
+
+  @@map("periodos")
+}
+
+// Tabla de horarios
+model Horario {
+  id        String   @id @default(cuid())
+  grupoId   String
+  materiaId String
+  profesorId String
+  espacioId String
+  periodoId String
+  diaSemana String   // LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO
+  horaInicio String  // HH:MM
+  horaFin   String   // HH:MM
+  observaciones String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relaciones
+  grupo     Grupo    @relation(fields: [grupoId], references: [id], onDelete: Cascade)
+  materia   Materia  @relation(fields: [materiaId], references: [id], onDelete: Restrict)
+  profesor  Profesor @relation(fields: [profesorId], references: [id], onDelete: Restrict)
+  espacio   Espacio  @relation(fields: [espacioId], references: [id], onDelete: Restrict)
+  periodo   Periodo  @relation(fields: [periodoId], references: [id], onDelete: Restrict)
+
+  @@unique([espacioId, diaSemana, horaInicio, periodoId])
+  @@index([grupoId])
+  @@index([materiaId])
+  @@index([profesorId])
+  @@index([espacioId])
+  @@index([diaSemana])
+  @@map("horarios")
+}
+
+// Tabla de relación muchos-a-muchos: Profesor - Materia
+model ProfesorMateria {
+  id        String   @id @default(cuid())
+  profesorId String
+  materiaId String
+  createdAt DateTime @default(now())
+
+  // Relaciones
+  profesor  Profesor @relation(fields: [profesorId], references: [id], onDelete: Cascade)
+  materia   Materia  @relation(fields: [materiaId], references: [id], onDelete: Cascade)
+
+  @@unique([profesorId, materiaId])
+  @@map("profesor_materias")
+}
+
+// Tabla de relación muchos-a-muchos: Profesor - Carrera
+model ProfesorCarrera {
+  id        String   @id @default(cuid())
+  profesorId String
+  carreraId String
+  createdAt DateTime @default(now())
+
+  // Relaciones
+  profesor  Profesor @relation(fields: [profesorId], references: [id], onDelete: Cascade)
+  carrera   Carrera  @relation(fields: [carreraId], references: [id], onDelete: Cascade)
+
+  @@unique([profesorId, carreraId])
+  @@map("profesor_carreras")
+}
+
+// Tabla de relación muchos-a-muchos: Grupo - Materia
+model GrupoMateria {
+  id        String   @id @default(cuid())
+  grupoId   String
+  materiaId String
+  createdAt DateTime @default(now())
+
+  // Relaciones
+  grupo     Grupo    @relation(fields: [grupoId], references: [id], onDelete: Cascade)
+  materia   Materia  @relation(fields: [materiaId], references: [id], onDelete: Cascade)
+
+  @@unique([grupoId, materiaId])
+  @@map("grupo_materias")
+}
+
+// Tabla para registrar importaciones de CSV
+model ImportacionCSV {
+  id        String   @id @default(cuid())
+  nombreArchivo String
+  totalRegistros Int
+  registrosValidos Int
+  registrosErroneos Int
+  detalleErrores String? // JSON con errores
+  usuarioId String?
+  estado    String   @default("COMPLETADA") // PENDIENTE, PROCESANDO, COMPLETADA, ERROR
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("importaciones_csv")
+}
